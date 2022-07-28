@@ -21,7 +21,7 @@ const TextInput = (props, ref) => {
     containerInputStyle,
     autoCapitalize = 'none',
     type = 'regular',
-    color = 'text',
+    color = 'white',
     borderColor = 'primary',
     size = 14,
     isSecure,

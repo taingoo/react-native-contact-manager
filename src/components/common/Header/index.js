@@ -1,9 +1,10 @@
 import {ICONS} from '@assets';
-import {Block, Image, Pressable, Text} from '@components';
+import {Block, Image, Text} from '@components';
 import {goBack, reset} from '@navigation/NavigationServices';
 import routes from '@navigation/routes';
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
+import {Pressable} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import styles from './styles';
 
@@ -20,24 +21,21 @@ const Header = ({canGoBack, title, onGoBack}) => {
 
   return (
     <Block
+      row
       alignCenter
-      justifyCenter
       paddingTop={top}
-      height={top + 42}
-      backgroundColor="primary">
+      height={top + 52}
+      backgroundColor="black">
       {(canGoBack || onGoBack) && (
-        <Pressable
-          event="go_back"
-          onPress={_handleGoBack}
-          style={styles.btnBack}>
+        <Pressable onPress={_handleGoBack} style={styles.btnBack}>
           <Image
             source={ICONS.arrow_left}
             style={styles.iconBack}
-            tintColor="white"
+            tintColor="blue"
           />
         </Pressable>
       )}
-      <Text center numberOfLines={1} color="white" type="semibold">
+      <Text md numberOfLines={1} color="blue" type="semibold">
         {title}
       </Text>
     </Block>
