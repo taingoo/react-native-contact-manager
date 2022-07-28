@@ -1,3 +1,4 @@
+import {Block} from '@components';
 import MainContainer from '@navigation';
 import store from '@store';
 import {isIos} from '@utils/helper';

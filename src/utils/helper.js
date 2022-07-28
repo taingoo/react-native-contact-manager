@@ -18,3 +18,16 @@ export const shortenName = fullName => {
 
   return ar[0].slice(0, 1).toUpperCase();
 };
+
+export const convertToSectionList = data => {
+  return data.reduce((list, obj) => {
+    let existObj = list.find(e => e.title === obj.displayName.charAt(0));
+    if (existObj) {
+      existObj.data.push(obj);
+    } else {
+      list.push({title: obj.displayName.charAt(0), data: [obj]});
+    }
+
+    return list.sort((a, b) => a.title.localeCompare(b.title));
+  }, []);
+};

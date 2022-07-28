@@ -15,7 +15,7 @@ const Text = props => {
     flexShrink,
     flexGrow,
     size = 14,
-    color = 'text',
+    color = 'white',
     center,
     right,
     justify,

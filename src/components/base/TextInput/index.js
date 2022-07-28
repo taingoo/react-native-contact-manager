@@ -96,12 +96,12 @@ const TextInput = (props, ref) => {
   );
 
   const _onFocus = e => {
-    setIsFocus(!isFocus);
+    // setIsFocus(!isFocus);
     onFocus && onFocus(e);
   };
 
   const _onBlur = e => {
-    setIsFocus(!isFocus);
+    // setIsFocus(!isFocus);
     onBlur && onBlur(e);
   };
 

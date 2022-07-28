@@ -23,7 +23,7 @@ const SectionListWrapper = ({
   const refreshing = isLoading && page === 1;
 
   const _keyExtractor = (item, index) =>
-    keyExtractor ? keyExtractor(item, index) : String(item?.id);
+    keyExtractor ? keyExtractor(item, index) : String(index);
 
   const _renderItem = props => renderItem(props);
 
@@ -54,7 +54,7 @@ const SectionListWrapper = ({
         renderItem={_renderItem}
         renderSectionHeader={_renderHeader}
         ListEmptyComponent={_renderEmpty}
-        ListFooterComponent={_renderFooter}
+        // ListFooterComponent={_renderFooter}
         ItemSeparatorComponent={_renderItemSeparator}
         SectionSeparatorComponent={_renderSectionSeparator}
         onEndReached={onLoadMore}

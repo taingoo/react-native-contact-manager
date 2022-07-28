@@ -8,7 +8,7 @@ import RootStack from './RootStack';
 const RootNavigation = () => {
   return (
     <NavigationContainer ref={navigationRef}>
-      <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
+      <StatusBar backgroundColor={COLORS.black} barStyle="light-content" />
       <RootStack />
     </NavigationContainer>
   );

@@ -21,14 +21,13 @@ export default StyleSheet.create({
     borderWidth: 1,
     backgroundColor: COLORS.white,
     borderRadius: getSize.s(6),
-    height: getSize.s(50),
-    paddingHorizontal: getSize.m(12),
+    height: getSize.s(40),
   },
   leftIcon: {
     position: 'absolute',
-    left: getSize.m(16),
-    height: getSize.s(22),
-    width: getSize.s(22),
+    left: getSize.m(12),
+    height: getSize.s(18),
+    width: getSize.s(18),
   },
   rightIcon: {
     position: 'absolute',
