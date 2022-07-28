@@ -1,7 +1,7 @@
-import {Block, Pressable, Text} from '@components';
+import {Block, Text} from '@components';
 import {getSize} from '@utils/responsive';
 import React, {useRef} from 'react';
-import {Animated} from 'react-native';
+import {Animated, Pressable} from 'react-native';
 import {UIActivityIndicator} from 'react-native-indicators';
 import styles from './styles';
 

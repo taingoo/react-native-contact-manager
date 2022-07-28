@@ -10,27 +10,33 @@ const useContact = () => {
   const [contacts, setContacts] = useState(null);
 
   useEffect(() => {
-    if (!data) {
-      if (isIos) {
-        Contacts.checkPermission().then(permission => {
-          if (permission === 'undefined') {
-            Contacts.requestPermission();
-          }
-          if (permission === 'authorized') {
+    const _getContacts = async () => {
+      if (!data) {
+        if (isIos) {
+          Contacts.checkPermission().then(permission => {
+            if (permission === 'undefined') {
+              Contacts.requestPermission();
+            }
+            if (permission === 'authorized') {
+              Contacts.getAll().then(c => setContacts(c));
+            }
+          });
+        } else {
+          const permission = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
+            {
+              title: 'Contacts',
+              message: 'This app would like to view your contacts.',
+              buttonPositive: 'Please accept bare mortal',
+            },
+          );
+          if (permission === 'granted') {
             Contacts.getAll().then(c => setContacts(c));
           }
-        });
-      } else {
-        PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
-          {
-            title: 'Contacts',
-            message: 'This app would like to view your contacts.',
-            buttonPositive: 'Please accept bare mortal',
-          },
-        ).then(Contacts.getAll().then(c => setContacts(c)));
+        }
       }
-    }
+    };
+    _getContacts();
   }, [data]);
 
   return {contacts};

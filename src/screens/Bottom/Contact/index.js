@@ -25,8 +25,6 @@ const Contact = () => {
     }
   }, [contacts, dispatch]);
 
-  console.log(data);
-
   const _renderItem = ({item}) => <ContactCard item={item} />;
 
   const _renderHeader = ({section: {title}}) => <SectionHeader title={title} />;
