@@ -6,6 +6,7 @@ export const ICONS = {
   video: require('./icons/video.png'),
   email: require('./icons/email.png'),
   message: require('./icons/message.png'),
+  clear_input: require('./icons/clear_input.png'),
 };
 
 export const IMAGES = {};
