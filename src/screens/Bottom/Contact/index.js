@@ -7,6 +7,7 @@ import {
   TextInput,
 } from '@components';
 import {useStore} from '@hooks';
+import {STORE_CONTACT} from '@store/actions';
 import {convertToSectionList} from '@utils/helper';
 import React, {useEffect} from 'react';
 import SectionHeader from './components/SectionHeader';
@@ -16,12 +17,15 @@ import useContact from './useContact';
 const Contact = () => {
   const {dispatch, useSelector} = useStore();
   const {contacts} = useContact();
+  const {data} = useSelector('contact');
 
   useEffect(() => {
     if (contacts) {
-      console.log(convertToSectionList(contacts));
+      dispatch({type: STORE_CONTACT, payload: convertToSectionList(contacts)});
     }
-  }, [contacts]);
+  }, [contacts, dispatch]);
+
+  console.log(data);
 
   const _renderItem = ({item}) => <ContactCard item={item} />;
 
@@ -29,11 +33,11 @@ const Contact = () => {
 
   const _renderFooter = () => (
     <Text lg center color="gray">
-      {contacts.length} liên hệ
+      {data.length} liên hệ
     </Text>
   );
 
-  if (!contacts) return null;
+  if (!data) return null;
   return (
     <Block flex safeBottom padding={24} backgroundColor="black">
       <Text md center type="semibold">
@@ -46,7 +50,7 @@ const Contact = () => {
       />
       <SectionListWrapper
         stickySectionHeadersEnabled
-        data={convertToSectionList(contacts)}
+        data={data}
         renderItem={_renderItem}
         renderSectionHeader={_renderHeader}
         ListFooterComponent={_renderFooter}

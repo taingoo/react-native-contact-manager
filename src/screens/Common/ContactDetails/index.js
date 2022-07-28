@@ -8,9 +8,9 @@ import styles from './styles';
 const ContactDetails = ({route}) => {
   const {dispatch, useSelector} = useStore();
   const {contact} = route.params;
-  const {displayName, phoneNumbers} = contact;
+  const {displayName, phoneNumbers, emailAddresses} = contact;
 
-  const _rennderActionButton = ({icon, label}) => (
+  const _rennderActionButton = ({icon, label, tintColor = 'blue'}) => (
     <Block
       radius={12}
       alignCenter
@@ -18,8 +18,8 @@ const ContactDetails = ({route}) => {
       width={(width - 32 - 36) / 4}
       height={(width - 32 - 36) / 4.5}
       backgroundColor="gray">
-      <Image source={icon} square={20} tintColor="blue" />
-      <Text sm color="blue">
+      <Image source={icon} square={20} tintColor={tintColor} />
+      <Text sm color={tintColor}>
         {label}
       </Text>
     </Block>
@@ -46,22 +46,45 @@ const ContactDetails = ({route}) => {
           {_rennderActionButton({icon: ICONS.message, label: 'nhắn tin'})}
           {_rennderActionButton({icon: ICONS.phone, label: 'gọi'})}
           {_rennderActionButton({icon: ICONS.video, label: 'video'})}
-          {_rennderActionButton({icon: ICONS.email, label: 'gửi thư'})}
+          {_rennderActionButton({
+            icon: ICONS.email,
+            label: 'gửi thư',
+            tintColor: emailAddresses?.length ? 'blue' : 'gray_700',
+          })}
         </Block>
-        <Block
-          radius={12}
-          width={width - 32}
-          margin={16}
-          backgroundColor="gray">
-          {phoneNumbers?.map((item, index) => (
-            <Block key={index} padding={12}>
-              <Text marginBottom={4}>di động</Text>
-              <Text md color="blue">
-                {item.number}
-              </Text>
-            </Block>
-          ))}
-        </Block>
+        {!!phoneNumbers?.length && (
+          <Block
+            radius={12}
+            width={width - 32}
+            margin={16}
+            backgroundColor="gray">
+            {phoneNumbers.map((item, index) => (
+              <Block key={index} padding={12}>
+                <Text marginBottom={4}>di động</Text>
+                <Text md color="blue">
+                  {item.number}
+                </Text>
+              </Block>
+            ))}
+          </Block>
+        )}
+        {!!emailAddresses?.length && (
+          <Block
+            radius={12}
+            width={width - 32}
+            marginBottom={16}
+            marginHorizontal={16}
+            backgroundColor="gray">
+            {emailAddresses.map((item, index) => (
+              <Block key={index} padding={12}>
+                <Text marginBottom={4}>email</Text>
+                <Text md color="blue">
+                  {item.email}
+                </Text>
+              </Block>
+            ))}
+          </Block>
+        )}
         <Block style={{...styles.common, height: getSize.s(120)}}>
           <Text>Ghi chú</Text>
         </Block>

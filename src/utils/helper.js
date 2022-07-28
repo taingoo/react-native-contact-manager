@@ -25,7 +25,10 @@ export const convertToSectionList = data => {
     if (existObj) {
       existObj.data.push(obj);
     } else {
-      list.push({title: obj.displayName.charAt(0), data: [obj]});
+      list.push({
+        title: obj.displayName.charAt(0),
+        data: [{...obj, isFavorite: false}],
+      });
     }
 
     return list.sort((a, b) => a.title.localeCompare(b.title));

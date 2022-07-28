@@ -1,0 +1,2 @@
+export const STORE_CONTACT = 'STORE_CONTACT';
+export const ADD_TO_FAVORITE = 'ADD_TO_FAVORITE';
