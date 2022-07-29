@@ -1,12 +1,11 @@
 import {ICONS} from '@assets';
 import {Block, FormContainer, Header, Image, Text} from '@components';
-import {useStore} from '@hooks';
 import {getSize, width} from '@utils/responsive';
 import React from 'react';
+import {Linking, Pressable} from 'react-native';
 import styles from './styles';
 
 const ContactDetails = ({route}) => {
-  const {dispatch, useSelector} = useStore();
   const {contact} = route.params;
   const {displayName, phoneNumbers, emailAddresses} = contact;
 
@@ -59,12 +58,16 @@ const ContactDetails = ({route}) => {
             margin={16}
             backgroundColor="gray">
             {phoneNumbers.map((item, index) => (
-              <Block key={index} padding={12}>
-                <Text marginBottom={4}>di động</Text>
-                <Text md color="blue">
-                  {item.number}
-                </Text>
-              </Block>
+              <Pressable
+                key={index}
+                onPress={() => Linking.openURL(`tel:${item.number}`)}>
+                <Block padding={12}>
+                  <Text marginBottom={4}>di động</Text>
+                  <Text md color="blue">
+                    {item.number}
+                  </Text>
+                </Block>
+              </Pressable>
             ))}
           </Block>
         )}

@@ -13,7 +13,7 @@ import {navigate} from '@navigation/NavigationServices';
 import routes from '@navigation/routes';
 import {SEARCH_CONTACT, STORE_CONTACT} from '@store/actions';
 import React, {useEffect, useState} from 'react';
-import {Pressable} from 'react-native';
+import {Keyboard, Pressable} from 'react-native';
 import SectionHeader from './components/SectionHeader';
 import styles from './styles';
 import useContact from './useContact';
@@ -61,7 +61,11 @@ const Contact = () => {
 
   const _rightIcon = () => {
     return keyword ? (
-      <Pressable onPress={() => setKeyword(null)}>
+      <Pressable
+        onPress={() => {
+          setKeyword(null);
+          Keyboard.dismiss();
+        }}>
         <Block alignCenter justifyCenter square={24} marginRight={8}>
           <Image source={ICONS.clear_input} square={18} tintColor="gray_300" />
         </Block>
